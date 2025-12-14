@@ -45,7 +45,7 @@ public class DistributionService {
 
         if (!validation.isSufficient()) {
             throw new IllegalArgumentException(
-                    "Distribution is inappropriate unable to record distribution not matching with the funds"
+                    "Distribution aborted: provided distribution amount does not align with available funds"
             );
         }
 
