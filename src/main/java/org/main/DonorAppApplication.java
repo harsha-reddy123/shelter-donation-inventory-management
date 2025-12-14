@@ -1,11 +1,11 @@
-package org.main;
+package org;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.persistence.autoconfigure.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = "org.entity")
 public class DonorAppApplication {
 
     public static void main(String[] args) {
