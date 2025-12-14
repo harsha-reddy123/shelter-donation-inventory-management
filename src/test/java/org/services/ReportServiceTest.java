@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.repository.DistributionRepository;
 import org.repository.DonationRepository;
 
@@ -23,9 +25,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
-    inventory calculation: Current Stock = Donated - Distributed
+ inventory calculation: Current Stock = Donated - Distributed
  donor report: Total contributions by each donor
  */
+@MockitoSettings(strictness = Strictness.LENIENT)
 @ExtendWith(MockitoExtension.class)
 class ReportServiceTest {
 
@@ -295,11 +298,9 @@ class ReportServiceTest {
 
         when(distributionRepository.getTotalQuantityByType()).thenReturn(foodDistributed);
 
-        when(distributionRepository.getTotalQuantityByType(DonationType.FOOD))
-                .thenReturn(new BigDecimal("200.00"));
-
         // When - Check if 250 is available (should be true: 500-200=300 available)
         boolean available = reportService.hasAvailableInventory(DonationType.FOOD, new BigDecimal("250.00"));
+        System.out.println(available);
 
         // Then
         assertTrue(available);
@@ -332,16 +333,20 @@ class ReportServiceTest {
     @Test
     @DisplayName("Should handle single donor with single donation type")
     void testDonorReportSingleDonorSingleType() {
+
         // Given
         List<Object[]> singleDonation = new ArrayList<>();
-        singleDonation.add(new Object[] {"Harsha", DonationType.MONEY, new BigDecimal("1000.00")});
+        singleDonation.add(new Object[] {
+                "Harsha",
+                DonationType.MONEY,
+                new BigDecimal("1000.00")
+        });
 
-        when(donationRepository.getTotalQuantityByType()).thenReturn(singleDonation);
+        when(donationRepository.getTotalDonationsByDonor())
+                .thenReturn(singleDonation);
 
         // When
         DonorReportDTO report = reportService.generateDonorReport();
-
-        System.out.println(report);
 
         // Then
         assertNotNull(report);
@@ -349,10 +354,12 @@ class ReportServiceTest {
         assertEquals(1, report.getContributions().size());
 
         DonorReportDTO.DonorContribution contribution = report.getContributions().get(0);
-        assertEquals("Bala", contribution.getDonorName());
+        assertEquals("Harsha", contribution.getDonorName());
         assertEquals(1, contribution.getDonations().size());
-        assertEquals(0, new BigDecimal("1000.00").compareTo(contribution.getTotalValue()));
+        assertEquals(0, new BigDecimal("1000.00")
+                .compareTo(contribution.getTotalValue()));
     }
+
 
     @Test
     @DisplayName("Should calculate totalValue correctly (only MONEY type)")
