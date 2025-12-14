@@ -1,0 +1,645 @@
+{
+	"info": {
+		"_postman_id": "18809423-a888-4e56-8747-14d0e3b5404e",
+		"name": "Digital Aid API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30271035"
+	},
+	"item": [
+		{
+			"name": "Donations",
+			"item": [
+				{
+					"name": "Register donation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"donorName\": \"Lakshman\",\r\n    \"donationType\": \"MONEY\",\r\n    \"quantity\": 3500,\r\n    \"donationDate\": \"2025-12-14\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/donations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all donations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get donation by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get donations by donor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/donor/Lakshman",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"donor",
+								"Lakshman"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get donations by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/type/MONEY",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"type",
+								"MONEY"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search donations by donor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/search?donor=ha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"search"
+							],
+							"query": [
+								{
+									"key": "donor",
+									"value": "ha"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get donations by date range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/date-range?startDate=2024-01-01&endDate=2025-12-31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get recent donations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/recent?days=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"recent"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all donor names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/donors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"donors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get total donation count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete donation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/donations/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donations",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Distributions",
+			"item": [
+				{
+					"name": "Record distribution",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"donationType\": \"MONEY\",\r\n    \"quantity\": 500,\r\n    \"distributionDate\": \"2025-12-13\",\r\n    \"recipient\": \"Disbtributor company 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/distributions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all distributions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get distribution by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get distributions by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/type/TOYS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"type",
+								"TOYS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get distributions by recipient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/recipient/Disbtributor company 2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"recipient",
+								"Disbtributor company 2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search distributions by recipient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/search?recipient=Disbtributor company 2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"search"
+							],
+							"query": [
+								{
+									"key": "recipient",
+									"value": "Disbtributor company 2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get distributions by date range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/date-range?startDate=2024-01-01&endDate=2025-12-31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get recent distributions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/recent?days=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"recent"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all unique recipients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/recipients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"recipients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get total distribution count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete distribution",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/distributions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"distributions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Inventory Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reports/inventory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reports",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Donor Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reports/donors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reports",
+								"donors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reports/inventory/TOYS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reports",
+								"inventory",
+								"TOYS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Inventory Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reports/inventory/check?type=TOYS&quantity=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reports",
+								"inventory",
+								"check"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "TOYS"
+								},
+								{
+									"key": "quantity",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
