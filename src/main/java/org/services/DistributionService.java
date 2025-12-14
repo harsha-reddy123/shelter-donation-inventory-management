@@ -21,10 +21,12 @@ import java.util.stream.Collectors;
 public class DistributionService {
 
     private final DistributionRepository distributionRepository;
+    private final ReportService reportService;
 
     @Autowired
-    public DistributionService(DistributionRepository distributionRepository) {
+    public DistributionService(DistributionRepository distributionRepository, ReportService reportService) {
         this.distributionRepository = distributionRepository;
+        this.reportService = reportService;
     }
 
     /**
@@ -33,8 +35,18 @@ public class DistributionService {
      * return => saved distribution response
      */
     public DistributionResponse recordDistribution(DistributionRequest request) {
+
         // Convert DTO to Entity
         Distribution distribution = DistributionMapper.toEntity(request);
+
+        // validate before saving the entry
+        boolean available = reportService.hasAvailableInventory(distribution.getDonationType(), distribution.getQuantity());
+
+        if (!available) {
+            throw new IllegalArgumentException(
+                    "Distribution is inappropriate unable to record distribution not matching with the funds"
+            );
+        }
 
         // Save to database
         Distribution savedDistribution = distributionRepository.save(distribution);

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = "org.entity")
-@ComponentScan(basePackages = {"org.controller", "org.services", "org.dto"})
+@ComponentScan(basePackages = {"org.controller", "org.services", "org.dto","org.exception"})
 @EnableJpaRepositories(basePackages = "org.repository")
 public class DonorAppApplication {
 
