@@ -6,7 +6,7 @@ function Navbar() {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Donation Manager
+          Donation Inventory Management
         </Typography>
 
         <Stack direction="row" spacing={2}>
@@ -18,6 +18,9 @@ function Navbar() {
           </Button>
           <Button color="inherit" component={RouterLink} to="/distributions">
             Distribute
+          </Button>
+          <Button color="inherit" component={RouterLink} to="/inventory">
+            Inventory Lookup
           </Button>
           <Button color="inherit" component={RouterLink} to="/reports">
             Reports
