@@ -36,13 +36,13 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- Optional: web support (if using controllers) -->
+        <!-- web support (for controllers) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Optional: Spring Boot test starter -->
+        <!-- Spring Boot tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
