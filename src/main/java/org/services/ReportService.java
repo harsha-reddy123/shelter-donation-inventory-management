@@ -1,5 +1,6 @@
 package org.services;
 
+import org.dto.InventoryCheckResponse;
 import org.entity.DonationType;
 import org.repository.DistributionRepository;
 import org.repository.DonationRepository;
@@ -138,10 +139,39 @@ public class ReportService {
      * @param requestedQuantity - quantity requested
      * returns => true if enough inventory available
      */
-    public boolean hasAvailableInventory(DonationType donationType, BigDecimal requestedQuantity) {
+    /*public boolean hasAvailableInventory(DonationType donationType, BigDecimal requestedQuantity) {
         BigDecimal available = getInventoryByType(donationType);
         return available.compareTo(requestedQuantity) >= 0;
+    }*/
+
+    //Method update from hasAvailableInventory to checkInventory with sufficient
+    public InventoryCheckResponse checkInventory(DonationType type, BigDecimal requestedQty) {
+        BigDecimal donated = getInventoryByType(type);
+        if (donated == null) {
+            donated = BigDecimal.ZERO;
+        }
+
+        BigDecimal distributed = distributionRepository.getTotalQuantityByType(type);
+        if (distributed == null) {
+            distributed = BigDecimal.ZERO;
+        }
+
+        // available inventory
+        BigDecimal available = donated.subtract(distributed);
+
+        //Compare with requested quantity
+        boolean sufficient = available.compareTo(requestedQty) >= 0;
+
+
+        InventoryCheckResponse response = new InventoryCheckResponse();
+        response.setDonationType(type);
+        response.setRequestedQuantity(requestedQty);
+        response.setAvailableQuantity(available);
+        response.setSufficient(sufficient);
+
+        return response;
     }
+
 
     //helper methods to handle internal functions
 

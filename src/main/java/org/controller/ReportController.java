@@ -1,6 +1,7 @@
 package org.controller;
 
 import org.dto.DonorReportDTO;
+import org.dto.InventoryCheckResponse;
 import org.dto.InventoryReportDTO;
 import org.entity.DonationType;
 import org.services.ReportService;
@@ -52,10 +53,12 @@ public class ReportController {
      Returns => true if enough inventory is available for distribution
      */
     @GetMapping("/inventory/check")
-    public ResponseEntity<Boolean> checkInventoryAvailability(
+    public ResponseEntity<InventoryCheckResponse> checkInventoryAvailability(
             @RequestParam DonationType type,
             @RequestParam BigDecimal quantity) {
-        boolean available = reportService.hasAvailableInventory(type, quantity);
-        return ResponseEntity.ok(available);
+        System.out.println("Entered the inventory check method");
+        InventoryCheckResponse response = reportService.checkInventory(type, quantity);
+        System.out.println("Inventory check response: " + response);
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,5 +1,6 @@
 package org.services;
 
+import org.dto.InventoryCheckResponse;
 import org.entity.Distribution;
 import org.entity.DonationType;
 import org.mapper.DistributionMapper;
@@ -40,9 +41,9 @@ public class DistributionService {
         Distribution distribution = DistributionMapper.toEntity(request);
 
         // validate before saving the entry
-        boolean available = reportService.hasAvailableInventory(distribution.getDonationType(), distribution.getQuantity());
+        InventoryCheckResponse validation = reportService.checkInventory(distribution.getDonationType(), distribution.getQuantity());
 
-        if (!available) {
+        if (!validation.isSufficient()) {
             throw new IllegalArgumentException(
                     "Distribution is inappropriate unable to record distribution not matching with the funds"
             );
