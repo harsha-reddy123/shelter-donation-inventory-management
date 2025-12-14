@@ -49,6 +49,7 @@ public class ReportService {
 
         // Calculate current stock for each type
         BigDecimal totalMoneyInStock = BigDecimal.ZERO;
+        BigDecimal totalQuantityInStock = BigDecimal.ZERO;
 
         for (DonationType type : allTypes) {
             BigDecimal donated = donatedMap.getOrDefault(type, BigDecimal.ZERO);
@@ -65,6 +66,9 @@ public class ReportService {
 
             report.addItem(item);
 
+            // Total quantity (regardless of type)
+            totalQuantityInStock = totalQuantityInStock.add(currentStock);
+
             // If this is money, add to total value
             if (type == DonationType.MONEY) {
                 totalMoneyInStock = totalMoneyInStock.add(currentStock);
@@ -72,6 +76,7 @@ public class ReportService {
         }
 
         report.setTotalValue(totalMoneyInStock);
+        report.setTotalQuantity(totalQuantityInStock);
 
         return report;
     }
@@ -105,6 +110,13 @@ public class ReportService {
             DonorReportDTO.DonationByType donationByType =
                     new DonorReportDTO.DonationByType(donationType, quantity);
             contribution.addDonation(donationByType);
+
+            BigDecimal totalQuantity = contribution.getTotalValue(); // reuse if same
+
+            // Always add quantity
+            contribution.setTotalQuantity(
+                    contribution.getTotalQuantity().add(quantity)
+            );
 
             // If money, add to total value
             if (donationType == DonationType.MONEY) {

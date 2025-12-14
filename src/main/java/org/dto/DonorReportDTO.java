@@ -22,7 +22,8 @@ public class DonorReportDTO {
     public static class DonorContribution {
         private String donorName;
         private List<DonationByType> donations;
-        private BigDecimal totalValue; // Optional: for money donations
+        private BigDecimal totalValue; // for money donations
+        private BigDecimal totalQuantity = BigDecimal.ZERO;
 
         public DonorContribution() {
             this.donations = new ArrayList<>();
@@ -38,6 +39,14 @@ public class DonorReportDTO {
         // Getters and Setters
         public String getDonorName() {
             return donorName;
+        }
+
+        public BigDecimal getTotalQuantity() {
+            return totalQuantity;
+        }
+
+        public void setTotalQuantity(BigDecimal totalQuantity) {
+            this.totalQuantity = totalQuantity;
         }
 
         public void setDonorName(String donorName) {

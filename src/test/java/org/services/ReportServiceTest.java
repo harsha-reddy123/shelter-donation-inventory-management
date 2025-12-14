@@ -2,6 +2,7 @@ package org.services;
 
 
 import org.dto.DonorReportDTO;
+import org.dto.InventoryCheckResponse;
 import org.dto.InventoryReportDTO;
 import org.entity.DonationType;
 import org.junit.jupiter.api.BeforeEach;
@@ -299,11 +300,11 @@ class ReportServiceTest {
         when(distributionRepository.getTotalQuantityByType()).thenReturn(foodDistributed);
 
         // When - Check if 250 is available (should be true: 500-200=300 available)
-        boolean available = reportService.hasAvailableInventory(DonationType.FOOD, new BigDecimal("250.00"));
-        System.out.println(available);
+        InventoryCheckResponse validation = reportService.checkInventory(DonationType.FOOD, new BigDecimal("250.00"));
+        System.out.println(validation.isSufficient());
 
         // Then
-        assertTrue(available);
+        assertTrue(validation.isSufficient());
     }
 
     @Test
@@ -324,10 +325,10 @@ class ReportServiceTest {
                 .thenReturn(new BigDecimal("80.00"));
 
         // When - Try to distribute 50 (only 20 available: 100-80=20)
-        boolean available = reportService.hasAvailableInventory(DonationType.FOOD, new BigDecimal("50.00"));
+        InventoryCheckResponse validation = reportService.checkInventory(DonationType.FOOD, new BigDecimal("50.00"));
 
         // Then
-        assertFalse(available);
+        assertFalse(validation.isSufficient());
     }
 
     @Test

@@ -18,6 +18,12 @@ function Reports() {
   const [donorReport, setDonorReport] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const formatCurrency = (value) => {
+  return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        }).format(value);
+    };
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -68,9 +74,15 @@ function Reports() {
               ))}
               <TableRow>
                 <TableCell colSpan={3} align="right">
-                  <strong>Total Value:</strong>
+                  <strong>Total Quantity:</strong>
                 </TableCell>
-                <TableCell><strong>{inventoryReport.totalValue}</strong></TableCell>
+                <TableCell><strong>{inventoryReport.totalQuantity}</strong></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell colSpan={3} align="right">
+                  <strong>Total Monetary Value:</strong>
+                </TableCell>
+                <TableCell><strong>{formatCurrency(inventoryReport.totalValue)}</strong></TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -102,9 +114,15 @@ function Reports() {
                   ))}
                   <TableRow>
                     <TableCell colSpan={2} align="right">
-                      <strong>Total Value:</strong>
+                      <strong>Total Monetary Value:</strong>
                     </TableCell>
-                    <TableCell><strong>{donor.totalValue}</strong></TableCell>
+                    <TableCell><strong>{formatCurrency(donor.totalValue)}</strong></TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={2} align="right">
+                        <strong>Total Quantity:</strong>
+                    </TableCell>
+                    <TableCell><strong>{donor.totalQuantity}</strong></TableCell>
                   </TableRow>
                 </React.Fragment>
               ))}

@@ -10,11 +10,13 @@ import java.util.List;
 public class InventoryReportDTO {
 
     private List<InventoryItem> items;
-    private BigDecimal totalValue; // Optional: total monetary value if applicable
+    private BigDecimal totalValue; // total monetary value if applicable
+    private BigDecimal totalQuantity;
 
     public InventoryReportDTO() {
         this.items = new ArrayList<>();
         this.totalValue = BigDecimal.ZERO;
+        this.totalQuantity = BigDecimal.ZERO;
     }
 
     //Inventory Items
@@ -96,6 +98,14 @@ public class InventoryReportDTO {
 
     public void setTotalValue(BigDecimal totalValue) {
         this.totalValue = totalValue;
+    }
+
+    public BigDecimal getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(BigDecimal totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
     public void addItem(InventoryItem item) {
